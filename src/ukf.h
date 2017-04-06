@@ -108,6 +108,20 @@ public:
    * @param meas_package The measurement at k+1
    */
   void UpdateRadar(MeasurementPackage meas_package);
+
+  void Initialize(const MeasurementPackage &meas_package);
+
+  void Update(const MeasurementPackage &meas_package, int num_points, int n_z, const MatrixXd &Zsig, const MatrixXd &R);
+
+    MatrixXd CreateAugmentedSigmaPoints() const;
+
+    void CreateAugmentedSigmaPoints(MatrixXd &Xsig_aug) const;
+
+    void PredictSigmaPoints(const MatrixXd &Xsig_aug, double delta_t);
+
+    void PredictState();
+
+    void PredictStateCovariance();
 };
 
 #endif /* UKF_H */
